@@ -1,0 +1,12 @@
+
+import sqlite3
+conn = sqlite3.connect('/home/guruprasad/Desktop/Intern_IIITH/treebank _query_ engine/final/Treebank_Hindi.db')
+print ('Opened database successfully');
+conn.execute('CREATE TABLE Tsentence(SNo INTEGER AUTO INCREMENT, sid INT (10), words INTEGER,sentence text, filename varchar(100),PRIMARY KEY (SNo,sid, filename));')
+print('Table Tsentence was created successfully')
+conn.execute('CREATE TABLE Tchunk (SNo INTEGER AUTO INCREMENT, sid varchar(100),wid INTEGER, word varchar(100), parent int(10), rel varchar(100), chunkid varchar(100), chunktype varchar(100), Translit varchar(100), filename varchar(100), PRIMARY KEY (SNo,sid,wid,filename,chunkid), FOREIGN KEY(filename) references Tsentence(filename));')
+print("Table Tchunk was created successfully")
+conn.execute('CREATE TABLE Tverb (SNo INTEGER AUTO INCREMENT, sid varchar(100),wordid INTEGER, word varchar(100), Case_ varchar(100), Gender varchar(100), Number_ varchar(100), Person INTEGER, Aspect varchar(100), VerbForm varchar(100), Voice varchar(100), Mood varchar(100), Tense varchar(100), Polite varchar(100), Poss varchar(100), Echo varchar(100), Vib varchar(100), Tam varchar(100), ChunkId varchar(100), ChunkType varchar(100), Translit varchar(100), Stype varchar(100), SpaceAfter varchar(100), AltTag varchar(100), filename varchar(100), PRIMARY KEY (SNo,wordid,sid,filename,Chunkid), FOREIGN KEY(filename) references Tsentence(filename));')
+print("Table Tverb was created successfully")
+conn.execute('CREATE TABLE Tword (SNo INTEGER AUTO INCREMENT, sid varchar(100),wordid INTEGER, word varchar(100), root varchar(100), pos_UD varchar(100), pos_ILMT varchar(100), Case_ varchar(100),Gender varchar(100), Number_ varchar(100), Person INTEGER, AdpType varchar(100), PronType varchar(100), Aspect varchar(100), VerbForm varchar(100), Voice varchar(100), Mood varchar(100), Tense varchar(100), AdvType varchar(100), NumType varchar(100), Polite varchar(100), Poss varchar(100), Echo varchar(100), Polarity varchar(100), Foreign_ varchar(100), parent varchar(100), rel varchar(100), Vib varchar(100), Tam varchar(100), ChunkId varchar(100), ChunkType varchar(100),Translit varchar(100), Stype varchar(100), SpaceAfter varchar(100), AltTag varchar(100), filename varchar(100), PRIMARY KEY (SNo,wordid,sid,filename,Chunkid), FOREIGN KEY(filename) references Tsentence(filename));')
+print("Table Tword was created successfully")
