@@ -301,14 +301,22 @@ while i == 1:
         os.system(cmd2)
         #either-or_case_TEMP.txt
         for i in range(n1):
-            if 'Sentence Id' in f4[i]:
-                sentenceid5=re.split(r':',f4[i])[1]
+            if 'sentence_id' in f4[i]:
+                sentenceid5=re.split(r': ',f4[i])[2]
                 sentenceid4=re.split(r'\t',sentenceid5)[0]
+                #print(sentenceid4)
                 sentenceid1="{'"+sentenceid4
                 sentenceid2=re.split(r'-',sentenceid1)
-                sentenceid3=sentenceid2[0]+"-"+sentenceid2[1]
+                #print("s2",sentenceid2)
+                sentenceid3=sentenceid2[0].lstrip(" ")+"-"+sentenceid2[1]
+                #print(f4[i])
+                print("s3",sentenceid3)
+                #print("\n\n\n")
+                #print(n)
                 for i in range(n):
                     d=re.split(r',',str(list[i]))
+                    print(d[0])
+                    #break
                     if(sentenceid3 == d[0]):
                         path=d[-1]
                         path1=re.split(r'\'',path)[0]
